@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%; /* Ensure html and body take full height */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: #0a192f; /* Dark blue base color */
+    position: relative;
+}
+
+/* Neon grid lines */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px; /* Adjust the grid size */
+    z-index: 1;
+}
+
+/* Neon glow effect */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
+    animation: glow 5s infinite alternate;
+    z-index: 2;
+}
+
+/* Glow animation */
+@keyframes glow {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(5, 80px);
+    gap: 2px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    padding: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.3); /* Neon border */
+    z-index: 3; /* Ensure the grid is above the background */
+}
+
+/* Grid cells */
+.child {
+    border: 1px solid rgba(0, 255, 255, 0.3); /* Neon border */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3; /* Ensure the cells are above the background */
+}
+
+.child.ship {
+    background-image: url('ship.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 4; /* Ensure ships are above the grid */
+}
+
+.child:hover {
+    opacity: 0.8;
+}
